@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <input v-model="message" type="text">
     {{message}} {{message + message}}
     <div :id="message"></div>
     <todo-list>

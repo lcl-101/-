@@ -2,6 +2,7 @@
   <div id="app">
     <input v-model="message" type="text">
     {{message}} {{message + message}}
+    <input :value="message" @input="handleChange" type="text">
     <div :id="message"></div>
     <todo-list>
             <todo-item @delete="handleDelete" v-for="item in list" :key="item.title" :title="item.title" :del="item.del">
@@ -46,6 +47,9 @@ export default {
     }
   },
   methods: {
+      handleChange (e){
+        this.message = e.target.value;
+      },
       handleDelete(val) {
           console.log('handleDelete:' + val);
       }

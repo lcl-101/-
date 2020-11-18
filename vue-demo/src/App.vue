@@ -5,7 +5,7 @@
     <input :value="message" @input="handleChange" type="text">
     <div :id="message"></div>
     <todo-list>
-            <todo-item @delete="handleDelete" v-for="item in list" :key="item.title" :title="item.title" :del="item.del">
+            <todo-item @delete="handleDelete" v-for="(item, index) in list" :key="index" :title="item.title" :del="item.del">
                 <!-- vue2.6之后语法 -->
                 <template v-slot:pre-icon="{value}">
                     <span>前置图标{{value}}</span>

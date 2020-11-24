@@ -20,6 +20,8 @@
           {{var2}}
       </template>
     </TempVar>
+
+    <Directives></Directives>
   </div>
 </template>
 
@@ -29,13 +31,16 @@ import PropsAndData from "./components/PropsAndData";
 
 import Clock from "./components/Clock";
 
-import TempVar from "./components/TempVar"
+import TempVar from "./components/TempVar";
+
+import Directives from "./components/Directives";
 export default {
   name: 'App',
   components: {
     PropsAndData,
     Clock,
-    TempVar
+    TempVar,
+    Directives
   },
   data() {
     return {

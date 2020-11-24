@@ -22,6 +22,8 @@
     </TempVar>
 
     <Directives></Directives>
+
+    <CustomerDirectives></CustomerDirectives>
   </div>
 </template>
 
@@ -34,13 +36,16 @@ import Clock from "./components/Clock";
 import TempVar from "./components/TempVar";
 
 import Directives from "./components/Directives";
+
+import CustomerDirectives from "./components/CustomerDirectives";
 export default {
   name: 'App',
   components: {
     PropsAndData,
     Clock,
     TempVar,
-    Directives
+    Directives,
+    CustomerDirectives
   },
   data() {
     return {

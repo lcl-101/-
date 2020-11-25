@@ -24,6 +24,8 @@
     <Directives></Directives>
 
     <CustomerDirectives></CustomerDirectives>
+
+    <ChildrenA></ChildrenA>
   </div>
 </template>
 
@@ -38,6 +40,8 @@ import TempVar from "./components/TempVar";
 import Directives from "./components/Directives";
 
 import CustomerDirectives from "./components/CustomerDirectives";
+
+import ChildrenA from "./components/ChildredA";
 export default {
   name: 'App',
   components: {
@@ -45,7 +49,15 @@ export default {
     Clock,
     TempVar,
     Directives,
-    CustomerDirectives
+    CustomerDirectives,
+    ChildrenA
+  },
+  provide() {
+    return {
+      theme: {
+        color: this.color
+      }
+    }
   },
   data() {
     return {
@@ -58,7 +70,8 @@ export default {
       // },
       list: [],
       message: "hellow vue",
-      destoryClock: false
+      destoryClock: false,
+      color: "blue"
     }
   },
   methods: {

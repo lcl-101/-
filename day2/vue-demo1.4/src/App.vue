@@ -26,6 +26,10 @@
     <CustomerDirectives></CustomerDirectives>
 
     <ChildrenA></ChildrenA>
+
+    <AnchoredHeading1 :level="1">hello world</AnchoredHeading1>
+    <AnchoredHeading2 :level="2">hello world</AnchoredHeading2>
+    <VNode :vnodes="getAnchoredHeading(4)"></VNode>
   </div>
 </template>
 
@@ -42,6 +46,10 @@ import Directives from "./components/Directives";
 import CustomerDirectives from "./components/CustomerDirectives";
 
 import ChildrenA from "./components/ChildredA";
+
+import AnchoredHeading1 from "./components/AnchoredHeading1.js";
+import AnchoredHeading2 from "./components/AnchoredHeading2";
+
 export default {
   name: 'App',
   components: {
@@ -50,12 +58,27 @@ export default {
     TempVar,
     Directives,
     CustomerDirectives,
-    ChildrenA
+    ChildrenA,
+    AnchoredHeading1,
+    AnchoredHeading2,
+    VNode: {
+      functional: true,
+      render: (h, ctx) => ctx.props.vnodes 
+    }
   },
   provide() {
     return {
       theme: {
-        color: this.color
+        color: this.color,
+        setChildrenRef: (name, ref) => {
+          this[name] = ref;
+        },
+        getChildrenRef: name => {
+          return this[name];
+        },
+        getRef: ()=> {
+          return this;
+        }
       }
     }
   },
@@ -91,6 +114,10 @@ export default {
     reversendMessage2() {
       console.log("执行reversendMessage2");
       return this.message.split("").reverse().join("");
+    },
+    getAnchoredHeading(level) {
+      const Tag = `h${level}`;
+      return <Tag>hello world</Tag>;
     }
   },
   computed: {

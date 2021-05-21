@@ -10,95 +10,82 @@
     <div id="app">
         {{message}} {{message + message}}
         <div :id="message"></div>
-        <!-- <ul> -->
-            <!-- <li v-for="item in list">
-                <span v-if="!item.del">{{item.title}}</span>
-                <span v-else style="text-decoration: line-through;">{{item.title}}</span>
-                <button v-show="!item.del">删除</button>
-            </li> -->
-            <!-- <todo-item v-for="item in list" :title="item.title" :del="item.del"></todo-item> -->
-        <!-- </ul> -->
         <todo-list>
-            <todo-item @delete="handleDelete" v-for="item in list" :title="item.title" :del="item.del">
-                <!-- vue2.6之后语法 -->
+            <todo-item v-for="item in list" @delete="deletehandel" :key="item.name" :name="item.name" :del="item.del">
                 <template v-slot:pre-icon="{value}">
                     <span>前置图标{{value}}</span>
                 </template>
-                <!-- vue2.5语法 -->
-                <span slot="next-icon">后置图标</span>
+                <template v-slot:suf-icon>
+                    <!-- <span>后置图标</span> -->
+                </template>
+                <!-- vue2.5
+                <span slot="pre-icon">前置图标</span>
+                <span slot="suf-icon">后置图标</span> -->
             </todo-item>
         </todo-list>
     </div>
     <script>
-        Vue.component("todo-item",{
+        Vue.component('todo-item',{
+            template: `
+                <li>
+                    <slot name="pre-icon" :value="value"></slot>
+                    <span v-if="!del">{{name}}</span>
+                    <span v-else style="text-decoration: line-through;">{{name}}</span>
+                    <slot name="suf-icon">😃</slot>
+                    <button v-show="!del" @click="handelClick">删除</button>
+                </li>
+            `,
             props: {
-                title: String,
-                del: {
-                    type: Boolean,
-                    default: false
-                }
+                name: String,
+                del: Boolean
             },
-            template: '<li>'+
-                            '<slot name="pre-icon" :value="value"></slot> '+
-                            '<span v-if="!del">{{title}}</span>'+
-                            '<span v-else style="text-decoration: line-through;">{{title}}</span>'+
-                            '<button v-show="!del" @click="handleClick">删除</button>'+
-                            ' <slot name="next-icon"></slot>' +
-                        '</li>',
             data: function(){
-                return{
+                return {
                     value: Math.random()
                 }
             },
             methods: {
-                handleClick: function(){
-                    console.log("点击的删除按钮");
-                    this.$emit("delete",this.title);
+                handelClick (){
+                    this.$emit('delete', this.name);
                 }
             }
         });
-
-        Vue.component("todo-list",{
-            template: '<ul><slot></slot></ul>',
+        Vue.component('todo-list',{
+            template: `
+                <ul>
+                    <slot></slot>
+                </ul>
+            `,
             data: function(){
                 return {
-                    list: [
-                    {
-                        title: "课程1",
-                        del: false
-                    },{
-                        title: "课程2",
-                        del: true
-                    }
-                ],
-                }
-            }
-        })
-
-        var vue = new Vue({
-            el: "#app",
-            data: {
-                message: "hello world",
-                list: [
-                    {
-                        title: "课程1",
-                        del: false
-                    },{
-                        title: "课程2",
-                        del: true
-                    }
-                ],
-                item: {
-                    title: "课程1",
-                    del: false
+                    
                 }
             },
             methods: {
-                handleDelete(val) {
-                    console.log('handleDelete:' + val);
-                }
+
             }
         });
+        var vue = new Vue({
+            el: "#app",
+            data: {
+                message: 'hello world',
+                list: [
+                        {
+                            name: '课程',
+                            del: false
+                        },
+                        {
+                            name: '课程2',
+                            del: true
+                        }
+                    ]
+            },
+            methods: {
+                deletehandel(val){
+                    console.log('deletehandel:',val)
+                }
+            }
+        })
     </script>
 </body>
 </html>

@@ -17,18 +17,24 @@
             <span slot="suf-icon">后置图标</span> -->
         </todo-item>
     </todo-list>
+    <ReverMessage></ReverMessage>
+    <WatchDemo></WatchDemo>
   </div>
 </template>
 
 <script>
 import TodoItem from './components/TodoItem.vue'
 import TodoList from './components/TodoList.vue'
+import ReverMessage from './views/1.5'
+import WatchDemo from './views/watch'
 
 export default {
   name: 'App',
   components: {
     TodoItem,
-    TodoList
+    TodoList,
+    ReverMessage,
+    WatchDemo
   },
   data (){
     return {

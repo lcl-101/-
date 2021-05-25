@@ -19,6 +19,7 @@
     </todo-list>
     <ReverMessage></ReverMessage>
     <WatchDemo></WatchDemo>
+    <clock></clock>
   </div>
 </template>
 
@@ -27,6 +28,7 @@ import TodoItem from './components/TodoItem.vue'
 import TodoList from './components/TodoList.vue'
 import ReverMessage from './views/1.5'
 import WatchDemo from './views/watch'
+import clock from "./views/clock"
 
 export default {
   name: 'App',
@@ -34,7 +36,8 @@ export default {
     TodoItem,
     TodoList,
     ReverMessage,
-    WatchDemo
+    WatchDemo,
+    clock
   },
   data (){
     return {

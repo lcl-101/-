@@ -15,10 +15,15 @@ const store = new Vuex.Store({
     }
   },
   actions: {
-    increment ({state}){
+    increment ({commit}){
       setTimeout( ()=> {
-        state.count++
+        commit('increat')
       },2000)
+    }
+  },
+  getters: {
+    doubleCount (state){
+      return state.count * 2
     }
   }
 })

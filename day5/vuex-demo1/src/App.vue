@@ -1,6 +1,8 @@
 <template>
   <div id="app">
     {{count}}
+    <br>
+    {{$store.getters.doubleCount}}
     <button @click="$store.commit('increat')">count++</button>
     <button @click="$store.dispatch('increment')">count++</button>
   </div>

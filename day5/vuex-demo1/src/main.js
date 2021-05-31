@@ -1,5 +1,6 @@
 import Vue from 'vue'
-import Vuex from 'vuex'
+// import Vuex from 'vuex'
+import Vuex from "./min_vuex"
 import App from './App.vue'
 
 Vue.use(Vuex)
@@ -28,7 +29,9 @@ const store = new Vuex.Store({
   }
 })
 
+Vue.prototype.$store = store
+console.log(store)
 new Vue({
-  store,
+  // store,
   render: h => h(App),
 }).$mount('#app')

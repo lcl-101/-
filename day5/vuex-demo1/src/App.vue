@@ -5,6 +5,9 @@
     {{$store.getters.doubleCount}}
     <button @click="$store.commit('increat')">count++</button>
     <button @click="$store.dispatch('increment')">count++</button>
+    <br>
+     <router-link to="/foo">foo</router-link>
+    <router-view></router-view>
   </div>
 </template>
 
